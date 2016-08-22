@@ -5,6 +5,8 @@
  */
 package ejercicio;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DanielDeJesus
@@ -27,21 +29,133 @@ public class Interfaz8 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtNumeroHora = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtDCajaAhorro = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtTotalPagar = new javax.swing.JTextField();
+        cmdCalcular = new javax.swing.JButton();
+        cmdBorrar = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jLabel1.setText("Ejercicio Número 9: Hallar el descuento y monto a pagar al los profesores ");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel2.setText("Nº de  horas:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
+
+        txtNumeroHora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroHoraKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtNumeroHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 60, -1));
+
+        jLabel3.setText("Descuento por concepto de caja de ahorro:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
+
+        txtDCajaAhorro.setEditable(false);
+        jPanel2.add(txtDCajaAhorro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 90, -1));
+
+        jLabel4.setText("Total a pagar:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
+
+        txtTotalPagar.setEditable(false);
+        jPanel2.add(txtTotalPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 70, -1));
+
+        cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+
+        cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNumeroHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroHoraKeyTyped
+        char c=evt.getKeyChar();
+        
+        if(!Character.isDigit(c)){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNumeroHoraKeyTyped
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        txtNumeroHora.setText("");
+        txtDCajaAhorro.setText("");
+        txtTotalPagar.setText("");
+        
+        txtNumeroHora.requestFocusInWindow();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+        String res,res2;
+        double nHoras,opH, opCA, opF;
+        
+        if(txtNumeroHora.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite el Nº de horas", "Error", JOptionPane.ERROR_MESSAGE);
+            txtNumeroHora.requestFocusInWindow();
+        }
+        else{
+            
+            nHoras = Double.parseDouble(txtNumeroHora.getText());
+            
+            opH = nHoras * 20000;
+            opCA = opH * 0.05;
+            opF = opH - opCA;
+            
+            res = String.valueOf(opCA);
+            res2 = String.valueOf(opF);
+            
+            txtDCajaAhorro.setText(res);
+            txtTotalPagar.setText(res2);
+            
+            
+            
+            
+        }
+    }//GEN-LAST:event_cmdCalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +193,16 @@ public class Interfaz8 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cmdBorrar;
+    private javax.swing.JButton cmdCalcular;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField txtDCajaAhorro;
+    private javax.swing.JTextField txtNumeroHora;
+    private javax.swing.JTextField txtTotalPagar;
     // End of variables declaration//GEN-END:variables
 }
